@@ -2,6 +2,7 @@ import express, { NextFunction, Request, Response } from 'express'
 import 'express-async-errors'
 import swagger from 'swagger-ui-express'
 import cors from 'cors'
+import { errors } from 'celebrate'
 import { routes } from './routes'
 import { AppError } from '@shared/errors/AppError'
 import swaggerFile from '../../swagger.json'
@@ -12,6 +13,7 @@ app.use(cors())
 app.use(express.json())
 app.use('/docs', swagger.serve, swagger.setup(swaggerFile))
 app.use(routes)
+app.use(errors())
 
 app.use(
   (error: Error, request: Request, response: Response, next: NextFunction) => {
@@ -28,5 +30,4 @@ app.use(
     })
   },
 )
-
 export { app }
