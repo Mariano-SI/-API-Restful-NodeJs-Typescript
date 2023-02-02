@@ -3,6 +3,7 @@ import { createRolesController } from '@roles/useCases/createRole'
 import { listRolesController } from '@roles/useCases/listRoles'
 import { showRolesController } from '@roles/useCases/showRole'
 import { updateRolesController } from '@roles/useCases/updateRole'
+import { deleteRolesController } from '@roles/useCases/deleteRole'
 
 const rolesRouter = Router()
 
@@ -25,4 +26,7 @@ rolesRouter.put('/:id', (req, res) => {
   return response
 })
 
+rolesRouter.delete('/:id', (req, res) => {
+  return deleteRolesController.handle(req, res)
+})
 export { rolesRouter }
